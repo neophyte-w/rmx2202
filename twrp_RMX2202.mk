@@ -11,8 +11,10 @@
 #
 LOCAL_PATH := device/realme/RMX2202
 DEVICE_PATH := device/realme/RMX2202
- #跳过ELF对齐
-BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
+
+PRODUCT_ENABLE_UFFD_GC := true
+# 移除Wi-Fi 认证测试工具
+PRODUCT_PACKAGES_REMOVE += sigma-dut
 
 # Inherit from those products. Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
@@ -27,6 +29,10 @@ PRODUCT_NAME := twrp_RMX2202
 PRODUCT_BRAND := realme
 PRODUCT_MODEL := RMX2202
 PRODUCT_MANUFACTURER := realme
+
+ifndef PRODUCT_MODEL
+PRODUCT_MODEL := RMX2202
+endif
 
 # 平台版本与安全补丁
 PLATFORM_VERSION := 99.87.36

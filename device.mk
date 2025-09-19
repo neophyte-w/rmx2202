@@ -21,8 +21,7 @@ PRODUCT_SOONG_NAMESPACES := \
 PRODUCT_PROPERTY_OVERRIDES += persist.sys.purgeable_assets=1
 
 COMMON_SOC := sm8350
-# Define hardware platform
-PRODUCT_PLATFORM := lahaina
+
 
 # APEX 更新支持
 $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
@@ -76,7 +75,8 @@ PRODUCT_PACKAGES += \
     checkpoint_gc \
     otapreopt_script \
     qcom_decrypt \
-    qcom_decrypt_fbe
+    qcom_decrypt_fbe \
+    magiskboot
     
 # OTA 证书
 PRODUCT_EXTRA_RECOVERY_KEYS += \
@@ -127,6 +127,7 @@ TARGET_SYSTEM_PROP := $(DEVICE_PATH)/system.prop
 # 预构建文件拷贝
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilts/dtb.img:dtb.img \
+    $(LOCAL_PATH)/prebuilt/magiskboot/magiskboot:recovery/root/sbin/magiskboot \
     $(LOCAL_PATH)/rootdir/etc/fstab.default:$(TARGET_VENDOR_RAMDISK_OUT)/first_stage_ramdisk/fstab.default
 
 # 分区与加密配置
