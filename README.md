@@ -53,7 +53,7 @@ service adbd /system/bin/adbd --root_seclabel=u:r:su:s0 --device_banner=recovery
 
 #为预防编译错误提前修改--2
 # mkbootimg: error: ambiguous option: --dt could match --dtb, --dtb_offset
-# cd ~/twrp/build/make/core/Makefile
+cd ~/twrp/build/make/core/Makefile
 # 大概1356行
 INTERNAL_BOOTIMAGE_ARGS += --dt $(INSTALLED_DTIMAGE_TARGET) 
 # 大概2778行
@@ -65,6 +65,12 @@ INTERNAL_RECOVERYIMAGE_ARGS += --dtb $(INSTALLED_DTIMAGE_TARGET)
 # 如果设备需要偏移（BOARD_DTB_OFFSET），则改成：
 INTERNAL_BOOTIMAGE_ARGS += --dtb $(INSTALLED_DTIMAGE_TARGET) --dtb_offset $(BOARD_DTB_OFFSET)
 INTERNAL_RECOVERYIMAGE_ARGS += --dtb $(INSTALLED_DTIMAGE_TARGET) --dtb_offset $(BOARD_DTB_OFFSET)
+
+############################################################################
+
+#为预防编译错误提前修改--3（必须）
+# 创建符号链接 让 etc 指向 /system/etc（TWRP 启动时会解析这个路径）：
+ln -sf /system/etc device/realme/RMX2202/recovery/root/etc
 
 ```
 
