@@ -70,6 +70,7 @@ INTERNAL_RECOVERYIMAGE_ARGS += --dtb $(INSTALLED_DTIMAGE_TARGET) --dtb_offset $(
 
 #为预防编译错误提前修改--3（必须）
 # 创建符号链接 让 etc 指向 /system/etc（TWRP 启动时会解析这个路径）：
+#在twrp目录下运行以下
 ln -sf /system/etc device/realme/RMX2202/recovery/root/etc
 
 ```
