@@ -103,7 +103,14 @@ TARGET_RECOVERY_DEVICE_MODULES += \
     vendor.display.config@1.0 \
     vendor.display.config@2.0 \
     vendor.qti.hardware.tui_comm@1.0
-    
+
+# 确保 lahaina_modules 被编译
+PRODUCT_PACKAGES += lahaina_modules
+
+# 如果你有 vendor so 需要拷贝，也可以写在这里
+# PRODUCT_COPY_FILES += \
+#     $(LOCAL_PATH)/prebuilts/vendor/lib64/libdisplayconfig.qti.so:recovery/root/vendor/lib64/libdisplayconfig.qti.so
+
 # Health
 PRODUCT_PACKAGES += \
     android.hardware.health@2.1-impl \

@@ -11,7 +11,8 @@
 #
 LOCAL_PATH := device/realme/RMX2202
 DEVICE_PATH := device/realme/RMX2202
-
+# 允许 ELF 文件拷贝
+BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
 # 编译器与构建选项
 TARGET_CLANG_VERSION := r416183
 BUILD_BROKEN_DUP_RULES := true
@@ -39,7 +40,22 @@ TARGET_BOOTLOADER_BOARD_NAME := lahaina
 # 内核基础配置
 BOARD_BOOT_HEADER_VERSION := 3
 BOARD_KERNEL_BASE := 0x00000000
-BOARD_KERNEL_CMDLINE := console=ttyMSM0,115200n8 androidboot.hardware=qcom androidboot.console=ttyMSM0 androidboot.memcg=1 lpm_levels.sleep_disabled=1 video=vfb:640x400,bpp=32,memsize=3072000 msm_rtb.filter=0x237 service_locator.enable=1 androidboot.usbcontroller=a600000.dwc3 swiotlb=0 loop.max_part=7 cgroup.memory=nokmem,nosocket pcie_ports=compat ip6table_raw.raw_before_defrag=1 kpti=off iptable_raw.raw_before_defrag=1 buildvariant=user
+BOARD_KERNEL_CMDLINE := \
+    console=ttyMSM0,115200n8 \
+    androidboot.console=ttyMSM0 \
+    androidboot.hardware=qcom \
+    androidboot.memcg=1 \
+    androidboot.usbcontroller=a600000.dwc3 \
+    buildvariant=user \
+    lpm_levels.sleep_disabled=1 \
+    swiotlb=0 \
+    kpti=off \
+    video=vfb:640x400,bpp=32,memsize=3072000 \
+    loop.max_part=7 \
+    msm_rtb.filter=0x237 \
+    service_locator.enable=1 \
+    pcie_ports=compat \
+    cgroup.memory=nokmem,nosocket
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_IMAGE_NAME := Image
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
@@ -115,9 +131,7 @@ TW_THEME := portrait_hdpi
 TW_Y_OFFSET := 120
 TW_H_OFFSET := -120
 TW_LOAD_VENDOR_BOOT_MODULES := true
-TW_LOAD_VENDOR_MODULES := "adsp_loader_dlkm.ko snd_event_dlkm.ko msm_drm.ko q6_dlkm.ko q6_notifier_dlkm.ko q6_pdr_dlkm.ko"
-TW_CUSTOM_CPU_TEMP_PATH := "/sys/devices/virtual/thermal/thermal_zone50/temp"
-TW_INPUT_BLACKLIST := hbtp_vm
+TW_LOAD_VENDOR_MODULES := "adsp_loader_dlkm.ko apr_dlkm.ko q6_dlkm.ko q6_notifier_dlkm.ko q6_pdr_dlkm.ko snd_event_dlkm.ko msm_drm.ko"
 TW_SUPPORT_INPUT_1_2_HAPTICS := true
 TW_EXCLUDE_TWRPAPP := true
 TW_USE_TOOLBOX := true
