@@ -86,6 +86,8 @@ export ALLOW_MISSING_DEPENDENCIES=true  # 忽略编译错误
 source build/envsetup.sh    # 加载构建环境
 lunch twrp_RMX2202CN        # 选择设备
 make bootimage -j$(nproc)  # 制作boot镜像
+m bootimage-nodeps -j$(nproc) #快速复用上次缓存，只重新打包 boot.img
+
 ```
 If there is no error, boot.img will be found in `out/target/product/RMX2202/boot.img`
 

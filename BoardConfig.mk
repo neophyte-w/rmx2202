@@ -114,22 +114,31 @@ TW_INCLUDE_FASTBOOTD := true
 TW_THEME := portrait_hdpi
 TW_Y_OFFSET := 120
 TW_H_OFFSET := -120
+TW_LOAD_VENDOR_BOOT_MODULES := true
 TW_LOAD_VENDOR_MODULES := "adsp_loader_dlkm.ko snd_event_dlkm.ko msm_drm.ko q6_dlkm.ko q6_notifier_dlkm.ko q6_pdr_dlkm.ko"
 TW_CUSTOM_CPU_TEMP_PATH := "/sys/devices/virtual/thermal/thermal_zone50/temp"
-TW_BRIGHTNESS_PATH := "/sys/class/backlight/panel0-backlight/brightness"
-TW_MAX_BRIGHTNESS := 2047
-TW_DEFAULT_BRIGHTNESS := 800
 TW_INPUT_BLACKLIST := hbtp_vm
 TW_SUPPORT_INPUT_1_2_HAPTICS := true
 TW_EXCLUDE_TWRPAPP := true
 TW_USE_TOOLBOX := true
 TW_EXTRA_LANGUAGES := true
-TW_NO_SCREEN_BLANK := true
 TW_FRAMERATE := 60
 TW_HAS_EDL_MODE := true
 TW_CUSTOM_BATTERY_POS := 740
 TW_CUSTOM_CLOCK_POS := 500
 TW_CUSTOM_CPU_POS := 180
+# 使用 DRM/KMS 显示后端（无 /dev/graphics/fb0 的设备必须启用）
+TW_USE_MINUI_WITH_LIBDRM := true
+# 屏幕分辨率与 DPI（RMX2202: 1080x2400, 480dpi）
+TARGET_SCREEN_WIDTH := 1080
+TARGET_SCREEN_HEIGHT := 2400
+TARGET_SCREEN_DENSITY := 480
+# 避免 cont_splash 卡住 Logo，强制关闭内核的连续开机画面
+BOARD_KERNEL_CMDLINE += msm_drm.dsi_display0.cont_splash=0
+# 屏幕亮度路径（你设备树里已有 panel0-backlight，这里确认并补充默认值）
+TW_BRIGHTNESS_PATH := "/sys/class/backlight/panel0-backlight/brightness"
+TW_MAX_BRIGHTNESS := 2047
+TW_DEFAULT_BRIGHTNESS := 800
 
 # 加密与解密（高通 FBE）：
 BOARD_USES_QCOM_FBE_DECRYPTION := true
@@ -156,13 +165,14 @@ BOARD_KERNEL_OFFSET := 0x00008000
 BOARD_DTB_OFFSET := 0x01f00000
 BOARD_MKBOOTIMG_ARGS += --dtb_offset $(BOARD_DTB_OFFSET)
 
-# RECOVERY_LIBRARY_SOURCE_FILES += \
-#    $(TARGET_OUT_VENDOR_SHARED_LIBRARIES)/libdisplayconfig.qti.so \
-#    $(TARGET_OUT_VENDOR_SHARED_LIBRARIES)/vendor.display.config@1.0.so \
-#    $(TARGET_OUT_VENDOR_SHARED_LIBRARIES)/vendor.display.config@2.0.so \
-#    $(TARGET_OUT_VENDOR_SHARED_LIBRARIES)/vendor.qti.hardware.tui_comm@1.0.so
+# 依赖显示的 vendor 共享库
+RECOVERY_LIBRARY_SOURCE_FILES += \
+    $(TARGET_OUT_VENDOR_SHARED_LIBRARIES)/libdisplayconfig.qti.so \
+    $(TARGET_OUT_VENDOR_SHARED_LIBRARIES)/vendor.display.config@1.0.so \
+    $(TARGET_OUT_VENDOR_SHARED_LIBRARIES)/vendor.display.config@2.0.so \
+    $(TARGET_OUT_VENDOR_SHARED_LIBRARIES)/vendor.qti.hardware.tui_comm@1.0.so
 
-# Recovery/fastbootd 与 UI：
+# UI/fastbootd
 TW_NO_LEGACY_PROPS := true
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.0/lun.%d/file
 TW_QCOM_ATS_OFFSET := 1621580431500

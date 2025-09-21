@@ -19,9 +19,7 @@ PRODUCT_SOONG_NAMESPACES := \
     vendor/twrp
 
 PRODUCT_PROPERTY_OVERRIDES += persist.sys.purgeable_assets=1
-
 COMMON_SOC := sm8350
-
 
 # APEX 更新支持
 $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
