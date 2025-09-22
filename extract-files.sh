@@ -9,7 +9,7 @@
 
 set -e
 
-DEVICE=RMX2202
+DEVICE=rmx2202
 VENDOR=realme
 
 # Load extract_utils and do some sanity checks

@@ -13,6 +13,6 @@
 LOCAL_PATH := $(call my-dir)
 LOCAL_IGNORE_MAX_PAGE_SIZE := true
 
-ifeq ($(TARGET_DEVICE),RMX2202)
+ifeq ($(TARGET_DEVICE),rmx2202)
 include $(call all-subdir-makefiles,$(LOCAL_PATH))
 endif

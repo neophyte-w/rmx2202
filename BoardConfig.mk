@@ -9,8 +9,9 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 #
-LOCAL_PATH := device/realme/RMX2202
-DEVICE_PATH := device/realme/RMX2202
+LOCAL_PATH := device/realme/rmx2202
+DEVICE_PATH := device/realme/rmx2202
+
 # 允许 ELF 文件拷贝
 BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
 # 编译器与构建选项
@@ -99,7 +100,7 @@ BOARD_QTI_DYNAMIC_PARTITIONS_PARTITION_LIST := \
 # Verified Boot
 BOARD_AVB_ENABLE := true
 BOARD_AVB_ALGORITHM := SHA256_RSA2048
-BOARD_AVB_KEY_PATH := device/realme/RMX2202/oplus_avb.pem
+BOARD_AVB_KEY_PATH := device/realme/rmx2202/oplus_avb.pem
 BOARD_AVB_VBMETA_SYSTEM := system system_ext product
 BOARD_AVB_VENDOR_BOOT_KEY_PATH := $(DEVICE_PATH)/security/avb.pem
 BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --flags 3
@@ -143,12 +144,12 @@ TW_CUSTOM_CLOCK_POS := 500
 TW_CUSTOM_CPU_POS := 180
 # 使用 DRM/KMS 显示后端（无 /dev/graphics/fb0 的设备必须启用）
 TW_USE_MINUI_WITH_LIBDRM := true
-# 屏幕分辨率与 DPI（RMX2202: 1080x2400, 480dpi）
+# 屏幕分辨率与 DPI（rmx2202: 1080x2400, 480dpi）
 TARGET_SCREEN_WIDTH := 1080
 TARGET_SCREEN_HEIGHT := 2400
 TARGET_SCREEN_DENSITY := 480
 # 避免 cont_splash 卡住 Logo，强制关闭内核的连续开机画面
-BOARD_KERNEL_CMDLINE += msm_drm.dsi_display0.cont_splash=0
+BOARD_KERNEL_CMDLINE += msm_drm.dsi_display0.ignore_cont_splash=1
 # 屏幕亮度路径（你设备树里已有 panel0-backlight，这里确认并补充默认值）
 TW_BRIGHTNESS_PATH := "/sys/class/backlight/panel0-backlight/brightness"
 TW_MAX_BRIGHTNESS := 2047
@@ -167,7 +168,7 @@ TW_USE_FSCRYPT_POLICY := 2
 DEVICE_MATRIX_FILE := $(DEVICE_PATH)/recovery/root/vendor/etc/vintf/compatibility_matrix.xml
 DEVICE_MANIFEST_FILE += \
      $(DEVICE_PATH)/recovery/root/vendor/etc/vintf/manifest.xml \
-     device/realme/RMX2202/recovery/root/vendor/etc/vintf/manifest/android.hardware.usb@1.2-service.xml
+     device/realme/rmx2202/recovery/root/vendor/etc/vintf/manifest/android.hardware.usb@1.2-service.xml
 # 仅在 recovery 生效的策略目录（推荐）
 BOARD_RECOVERY_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/recovery
 

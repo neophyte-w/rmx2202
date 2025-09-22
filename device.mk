@@ -9,17 +9,20 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 #
-LOCAL_PATH := device/realme/RMX2202
-DEVICE_PATH := device/realme/RMX2202
+COMMON_SOC := sm8350
+# 如果内核支持 userfaultfd 和 MREMAP_DONTUNMAP
+PRODUCT_ENABLE_UFFD_GC := true
+
+LOCAL_PATH := device/realme/rmx2202
+DEVICE_PATH := device/realme/rmx2202
 
 # Soong 命名空间
 PRODUCT_SOONG_NAMESPACES := \
-    device/realme/RMX2202 \
+    device/realme/rmx2202 \
     $(LOCAL_PATH)/stubs \
     vendor/twrp
 
 PRODUCT_PROPERTY_OVERRIDES += persist.sys.purgeable_assets=1
-COMMON_SOC := sm8350
 
 # APEX 更新支持
 $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
@@ -83,9 +86,9 @@ PRODUCT_EXTRA_RECOVERY_KEYS += \
     
 # Boot & Fastboot 支持
 PRODUCT_PACKAGES += \
-    android.hardware.boot@1.2-impl \
-    android.hardware.boot@1.2-impl.recovery \
-    android.hardware.boot@1.2-service \
+    android.hardware.boot@1.1-impl \
+    android.hardware.boot@1.1-impl.recovery \
+    android.hardware.boot@1.1-service \
     android.hardware.fastboot@1.1-impl-mock \
     fastbootd \
     toybox toolbox e2fsck mke2fs resize2fs tune2fs

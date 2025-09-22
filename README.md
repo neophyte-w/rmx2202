@@ -84,7 +84,7 @@ make installclean #保留中间产物加速重编译
 #开始编译twrp
 export ALLOW_MISSING_DEPENDENCIES=true  # 忽略编译错误
 source build/envsetup.sh    # 加载构建环境
-lunch twrp_RMX2202CN        # 选择设备
+lunch twrp_rmx2202        # 选择设备
 make bootimage -j$(nproc)  # 制作boot镜像
 m bootimage-nodeps -j$(nproc) #快速复用上次缓存，只重新打包 boot.img
 

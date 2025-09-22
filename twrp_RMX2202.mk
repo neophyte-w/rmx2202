@@ -9,29 +9,28 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 #
-LOCAL_PATH := device/realme/RMX2202
-DEVICE_PATH := device/realme/RMX2202
+LOCAL_PATH := device/realme/rmx2202
+DEVICE_PATH := device/realme/rmx2202
 
-PRODUCT_ENABLE_UFFD_GC := true
 # 移除Wi-Fi 认证测试工具
 PRODUCT_PACKAGES_REMOVE += sigma-dut
-
 # Inherit from those products. Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base.mk)
 # Inherit some common TWRP stuff.
 $(call inherit-product, vendor/twrp/config/common.mk)
-# Inherit from RMX2202 device
-$(call inherit-product, device/realme/RMX2202/device.mk)
-
-PRODUCT_DEVICE := RMX2202
-PRODUCT_NAME := twrp_RMX2202
+# Inherit from rmx2202 device
+$(call inherit-product, device/realme/rmx2202/device.mk)
+PRODUCT_DEVICE := rmx2202
+PRODUCT_NAME := twrp_rmx2202
 PRODUCT_BRAND := realme
-PRODUCT_MODEL := RMX2202
+PRODUCT_MODEL := Realme GT 5G
 PRODUCT_MANUFACTURER := realme
 
+PRODUCT_GMS_CLIENTID_BASE := android-realme
+
 ifndef PRODUCT_MODEL
-PRODUCT_MODEL := RMX2202
+PRODUCT_MODEL := rmx2202
 endif
 
 # 平台版本与安全补丁
@@ -41,10 +40,7 @@ PLATFORM_SECURITY_PATCH := 2127-12-31
 VENDOR_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
 BOOT_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
 TW_DEVICE_VERSION := realme GT
-
-PRODUCT_GMS_CLIENTID_BASE := android-realme
-
 PRODUCT_BUILD_PROP_OVERRIDES += \
     PRIVATE_BUILD_DESC="qssi-user 15 AP3A.240617.008 1755013593344 release-keys"
 
-BUILD_FINGERPRINT := realme/RMX2202/RMX2202:15/AP3A.240617.008/1755013593344:user/release-keys
+BUILD_FINGERPRINT := realme/rmx2202/rmx2202:15/AP3A.240617.008/1755013593344:user/release-keys
