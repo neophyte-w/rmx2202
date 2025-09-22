@@ -2,7 +2,7 @@
 
 ## Supported devices
 
-- Realme GT(RMX2202CN)
+- Realme GT(rmx2202CN)
 ## Build it yourself?
 
 ```shell
@@ -13,7 +13,7 @@ repo init --depth=1 -u https://github.com/TWRP-Test/platform_manifest_twrp_aosp.
 #同步
 repo sync
 #克隆设备树源码
-git clone --depth=1 https://github.com/neophyte-w/rmx2202 device/realme/RMX2202
+git clone --depth=1 https://github.com/neophyte-w/rmx2202 device/realme/rmx202
 #克隆sm8350内核源码
 git clone https://github.com/LineageOS/android_kernel_oneplus_sm8350.git kernel/qcom/sm8350
 #克隆
@@ -71,7 +71,7 @@ INTERNAL_RECOVERYIMAGE_ARGS += --dtb $(INSTALLED_DTIMAGE_TARGET) --dtb_offset $(
 #为预防编译错误提前修改--3（必须）
 # 创建符号链接 让 etc 指向 /system/etc（TWRP 启动时会解析这个路径）：
 #在twrp目录下运行以下
-ln -sf /system/etc device/realme/RMX2202/recovery/root/etc
+ln -sf /system/etc device/realme/rmx2202/recovery/root/etc
 
 ```
 
@@ -89,7 +89,7 @@ make bootimage -j$(nproc)  # 制作boot镜像
 m bootimage-nodeps -j$(nproc) #快速复用上次缓存，只重新打包 boot.img
 
 ```
-If there is no error, boot.img will be found in `out/target/product/RMX2202/boot.img`
+If there is no error, boot.img will be found in `out/target/product/rmx2202/boot.img`
 
 
 ## To use it:
